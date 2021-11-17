@@ -1,0 +1,59 @@
+.test-detail {
+  &__content {
+    @include boxShadow();
+    padding: 24px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .desc {
+    width: calc(100% - 40% - 24px);
+  }
+
+  .info {
+    width: 40%;
+    background: $bg-secondary;
+    color: $white-color;
+    padding: 16px;
+    border-radius: 16px;
+
+    &__item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+
+      span {
+        margin-right: 8px;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      &.right {
+
+        .value,
+        .material-icons {
+          color: $function-success-color;
+        }
+      }
+
+      &.wrong {
+
+        .value,
+        .material-icons {
+          color: $function-error-color;
+        }
+      }
+
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+
+    }
+  }
+
+}

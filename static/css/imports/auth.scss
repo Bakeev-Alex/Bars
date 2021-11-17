@@ -1,0 +1,13 @@
+.auth {
+ height: 100vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ &__content {
+   max-width: 600px;
+   width: 100%;
+   border: 1px solid $theme-border-color;
+   border-radius: 16px;
+   padding: 24px;
+ } 
+}

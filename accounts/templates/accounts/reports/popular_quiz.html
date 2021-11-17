@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="content">
+
+          <main>
+            <div class="wrapper">
+                <form class="auth__form" method="post">
+                    {% csrf_token %}
+                    <label class="field">
+                      <input type="date" name="date_from" class="field__input" placeholder="Дата с">
+                      <span class="field__title">
+                        Дата с
+                      </span>
+                    </label>
+
+                    <label class="field">
+                      <input type="date" name="date_to" class="field__input" placeholder="Дата по">
+                      <span class="field__title">
+                        Дата по
+                      </span>
+                    </label>
+
+                    <button class="btn btn--primary field__btn" type="submit">Показать</button>
+                </form>
+            </div>
+          </main>
+        </div>
+    </div>
+{% endblock %}

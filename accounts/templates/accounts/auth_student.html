@@ -1,0 +1,87 @@
+{% extends 'layouts/base.html' %}
+
+{#{% block content %}#}
+{#    <h1>Authorization student</h1>#}
+{##}
+{#    <form action="." method="post">#}
+{#        {% csrf_token %}#}
+{#        {{ student_form }}#}
+{#        <button type="submit">Зарегистрироваться</button>#}
+{#    </form>#}
+{#{% endblock %}#}
+
+{% block content %}
+    <div class="container">
+    <div class="content">
+
+      <main>
+        <div class="wrapper">
+
+          <section class="auth">
+              <div class="auth__content">
+                  <div class="header-block">
+                    <h3>Авторизация</h3>
+                  </div>
+
+                  <div class="auth__tabs">
+                    <a href="{% url 'account:student_auth' %}" class="auth__tabs--item active">Студент</a>
+                    <a href="{% url 'account:professor_auth' %}" class="auth__tabs--item">Преподаватель</a>
+                  </div>
+
+                  <form action="." class="auth__form" method="post">
+                      {% csrf_token %}
+                      <label class="field">
+                          {{ student_form.username }}
+                          {{ student_form.errors.username }}
+                         <span class="field__title">
+                           Пользователь
+                         </span>
+                      </label>
+                      <label class="field">
+                          {{ student_form.first_name }}
+                          {{ student_form.errors.first_name }}
+                         <span class="field__title">
+                           Имя
+                         </span>
+                      </label>
+                      <label class="field">
+                          {{ student_form.last_name }}
+                          {{ student_form.errors.last_name }}
+                         <span class="field__title">
+                           Фамилия
+                         </span>
+                      </label>
+
+                      <label class="field">
+                           {{ student_form.study_group }}
+                          {{ student_form.errors.study_group }}
+                         <span class="field__title">
+                          Группа
+                         </span>
+                       </label>
+
+                       <label class="field">
+                           {{ student_form.password1 }}
+                           {{ student_form.errors.password1 }}
+                         <span class="field__title">
+                          Пароль
+                         </span>
+                       </label>
+                      <label class="field">
+                           {{ student_form.password2 }}
+                          {{ student_form.errors.password2 }}
+                         <span class="field__title">
+                          Подтвержение пароля
+                         </span>
+                       </label>
+
+                       <button class="btn btn--primary field__btn" type="submit">Войти</button>
+                  </form>
+              </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+  </div>
+{% endblock %}

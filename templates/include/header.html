@@ -1,0 +1,48 @@
+<header class="header">
+    <div class="wrapper">
+        <div class="header__content">
+            <a href="{% url 'user_tests:main' %}" class="header__home">
+                <div class="material-icons header__home--icon">
+                    home
+                </div>
+
+                <div class="header__home--text">
+                    На главную
+                </div>
+            </a>
+            <a href="{% url 'accounts:popular' %}" class="header__home">
+                <div class="header__home--text">
+                    Список популярных курсов
+                </div>
+            </a>
+
+            <!-- Если пользователь залогинен start -->
+            {% if user.is_authenticated %}
+            <div class="header__user">
+                <div class="header__user--info">
+                    <div class="header__user--name">
+                        <span>{{ user.first_name }} {{ user.last_name }}</span>
+                    </div>
+                </div>
+
+                <a href="{% url 'accounts:logout' %}" class="header__user--logout">
+                    <span class="material-icons logout-icon">
+                        logout
+                    </span>
+                </a>
+
+            </div>
+            {% else %}
+                <div class="header__login">
+                    <a href="{% url 'accounts:login' %}">
+                        Войти
+                    </a>
+
+                    <a href="{% url 'accounts:student_auth' %}">
+                        Регистрация
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</header>

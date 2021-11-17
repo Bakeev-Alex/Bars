@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="content">
+            <main>
+                <div class="wrapper">
+                    <section class="tests__list">
+                        <div class="header-block">
+                            <h2>
+                                Список тестовых заданий
+                            </h2>
+                        </div>
+
+                        <div class="tests__list--content">
+                            {% if page_obj %}
+                                {% for quiz in page_obj %}
+                                    <div class="tests__card">
+
+                                        <h4 class="tests__card--title">{{ quiz.title }}</h4>
+                                        <div class="tests__card--desc desc">
+                                            <p class="desc__text">
+                                                {{ quiz.description }}
+                                            </p>
+
+                                            <div class="desc__bottom">
+                                                <a href="{% url 'user_tests:edit_quiz' quiz.id %}"
+                                                   class="desc__link"><span class="text">Редактировать</span></a>
+
+                                                <a href="{% url 'user_tests:quiz' quiz.id %}" class="desc__link"><span
+                                                        class="text">Перейти к тесту</span><span
+                                                        class="material-icons">arrow_right_alt</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                    </section>
+                    {% include 'include/pagination.html' %}
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}

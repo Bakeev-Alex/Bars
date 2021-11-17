@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="content">
+            <main>
+                <div class="wrapper">
+                    <section class="tests__list">
+                        <div class="header-block">
+                            <h2>
+                                Список выполненых тестов
+                            </h2>
+                        </div>
+
+                        <div class="tests__list--content">
+                            {% if page_obj %}
+                                {% for result_quiz in page_obj %}
+                                    <div class="tests__card">
+
+                                        <h4 class="tests__card--title">{{ result_quiz.quiz.title }}</h4>
+                                        <div class="tests__card--desc desc">
+                                            <p class="desc__text">
+                                                {{ result_quiz.quiz.description }}
+                                            </p>
+
+                                            <div class="desc__bottom">
+                                                <a href="{% url 'user_tests:result_detail' result_quiz.unique_value %}" class="desc__link"><span
+                                                        class="text">Посмотреть результаты</span><span
+                                                        class="material-icons">arrow_right_alt</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                    </section>
+                    {% include 'include/pagination.html' %}
+                </div>
+            </main>
+        </div>
+    </div>
+{% endblock %}

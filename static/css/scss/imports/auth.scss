@@ -1,0 +1,37 @@
+.auth {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 16px;
+    &--item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+      padding: 8px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 600;
+      border-radius: 12px;
+
+      &.active {
+        background: $theme-primary-color;
+        color: $white-color;
+      }
+    }
+  }
+
+  &__content {
+    max-width: 600px;
+    width: 100%;
+    border: 1px solid $theme-border-color;
+    border-radius: 16px;
+    padding: 24px;
+  }
+}

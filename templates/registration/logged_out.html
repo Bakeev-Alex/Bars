@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <p>Вы не авторизованы</p>
+    <a  href="{% url 'account:login' %}">Войти</a>
+    или зарегистрироваться как
+    <a href="{% url 'account:professor_auth' %}">Преподаватель</a>
+    <a href="{% url 'account:student_auth' %}">Студент</a>
+{% endblock %}

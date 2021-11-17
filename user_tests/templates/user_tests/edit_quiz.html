@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+    <h1>Форма для редактирования</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <h1>Добавить новый вопрос:</h1>
+        {{ question_form.management_form }}
+        {% for item in question_form.forms %}
+            <div class="question">
+                <h2>Вопрос:</h2>
+                {{ item.as_p }}
+                {{ variants.management_form }}
+
+                    {% for variant in variants %}
+                        <div class="variant">
+                            <h2>Вариант ответа:</h2>
+                            {{ variant.as_p }}
+                        </div>
+                    {% endfor %}
+
+                <p>------------------------------------------------------------------------</p>
+            </div>
+        {% endfor %}
+
+        <button type="submit">{% if quiz_pk %}Редактировать{% else %}Создать{% endif %}</button>
+    </form>
+
+{% endblock %}

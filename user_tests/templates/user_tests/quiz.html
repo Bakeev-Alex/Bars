@@ -1,0 +1,170 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="main">
+    <div class="wrapper">
+        <section class="test-detail">
+
+            <div class="header-block">
+                <h2>{{ question_item.quiz.title }}</h2>
+            </div>
+
+            <div class="test-detail__content">
+                <div class="test-detail__content--desc desc">
+                    <h4 class="desc__title">
+                        Описание теста
+                    </h4>
+                    <div class="desc__content">
+                        <p>{{ question_item.quiz.description }}</p>
+                    </div>
+                    <div class="desc__controls">
+                        <a href="/" class="btn btn--primary start">Начать тестирование</a>
+                    </div>
+                </div>
+                <div class="test-detail__content--info info">
+                    <h4 class="info__title">Информация</h4>
+
+                    <div class="info__content">
+                        <div class="info__item">
+                            <span class="point">
+                                Общее количество вопросов:
+                            </span>
+                            <span class="value">
+                                {{ questions.count }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="test__quiz" id="testBody">
+
+            <div class="test__quiz--list quiz">
+            {% for question in questions %}
+                <div class="quiz__item {% if forloop.first %}active{% endif %}">
+
+                    <h5 class="quiz__item--title question">
+                        {{ question.title }}
+                    </h5>
+                    <div class="desc__content">
+                      <p>
+                          {{ question.description }}
+                      </p>
+                    </div>
+
+                    <form class="quiz__item--content">
+                        {% csrf_token %}
+                        <input type="hidden" name="quiz_id" value="{{ question.quiz.id }}">
+                        {% for variant in question.variants.all %}
+                            <label class="field field-check">
+                                <input type="checkbox" name="answer" class="field-check__input" value="{{ variant.id }}">
+                                <span class="field-check__name">{{ variant.title }}</span>
+                            </label>
+                        {% endfor %}
+
+                        <button class="btn btn--primary quiz__item--btn" disabled>Ответить</button>
+                    </form>
+                </div>
+            {% endfor %}
+
+            </div>
+
+            <aside class="test__quiz--aside aside">
+                <div class="aside__block">
+                    <span>Вопрос</span>
+                    <!-- счетчик обновляется на каждой итерации сабмита формы кроме последней -->
+                    <span id="count">1</span>
+                    <span>из</span>
+                    <span>{{ questions.count }}</span>
+                </div>
+
+                <!-- ссылка на итоги теста (по итогу вешается класс active) -->
+                <a href="{% if unique_pk %}{% url 'user_tests:result_detail' unique_pk %}
+                        {% else %}{% url 'user_tests:result' %}{% endif %}" class="btn btn--primary aside__btn" id="final">
+                    Узнать результаты
+                </a>
+
+            </aside>
+
+        </section>
+    </div>
+</div>
+
+<script>
+    const quizInit = function () {
+        let questions = document.querySelectorAll('.quiz__item');
+        let questionCount = 1;
+        let questionCountBlock = document.querySelector('#count');
+
+        // сюда урл куда кидаются запросы (можно из шаблона где-то взять или я хз)
+        let url = '/processing/';
+        {#let request = new Request(#}
+        {#        url,#}
+        {#        {'headers': {'X-CSRFToken': csrftoken}}#}
+        {#    );#}
+        console.log(questions);
+
+        questions.forEach((item, i) => {
+            item.id = "question_" + (i + 1);
+
+            let form = item.querySelector('form');
+            let btn = form.querySelector('.btn');
+
+            // валидирование формы (если ни одного чекбокса не выбрано то кнопка отрубается)
+            let checkboxes = form.querySelectorAll('input[type="checkbox"]')
+            console.log(checkboxes);
+            checkboxes.forEach(checkbox => checkbox.addEventListener('change', (e) => {
+                let prer = Array.from(checkboxes).filter(checkbox => checkbox.checked === true)
+                console.log(prer);
+                prer.length > 0 ? btn.disabled = false : btn.disabled = true
+                prer.length === checkboxes.length ? btn.disabled = true : btn.disabled = false
+                {#prer.length === checkboxes.length && checkboxes.length !== 1 ? btn.disabled = true : btn.disabled = false#}
+            }));
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let formData = new FormData(form);
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                }).then((data) => {
+                    form.reset();
+                    console.log('response ' + data);
+                }).finally(() => {
+                    item.classList.remove('active');
+                    // если вопрос был не последний
+                    if (i + 1 < questions.length) {
+                        console.log('not last ' + (i + 1) + ' | ' + questions.length);
+                        questionCount += 1;
+                        questionCountBlock.textContent = questionCount;
+                        setTimeout(() => {
+                            item.remove();
+                            questions[i + 1].classList.add('active')
+                        }, 500);
+
+                    } else {
+                        // если последний
+                        console.log('last');
+                        document.getElementById('final').classList.add('active');
+                    }
+                })
+            })
+        });
+    }
+
+    const quizStart = function () {
+        document.querySelector('.start').addEventListener("click", (e) => {
+            e.preventDefault();
+            document.getElementById('testBody').classList.add('active');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        quizInit();
+        quizStart();
+    });
+</script>
+
+{% endblock %}

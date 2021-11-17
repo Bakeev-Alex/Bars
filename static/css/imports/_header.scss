@@ -1,0 +1,82 @@
+.header {
+  background-color: $bg-secondary;
+  @include boxShadow;
+  padding: 16px;
+  margin-bottom: 32px;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  &__home {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    align-items: center;
+    color: $white-color;
+
+    &--icon {
+      margin-right: 8px;
+      font-size: 40px !important;
+    }
+
+    &--text {
+      font-weight: 500;
+    }
+  }
+
+  &__user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white-color;
+
+    &--name {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &--role {
+      font-size: 14px;
+    }
+
+    &--info {
+      margin-right: 32px;
+    }
+
+    &--logout {
+      color: $white-color;
+      display: flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      .logout-icon {
+        font-size: 28px !important;
+      }
+    }
+  }
+
+  &__login {
+    display: flex;
+    align-items:center;
+
+    a {
+      text-decoration: none;
+      color: $white-color;
+      font-size: 18px;
+      font-weight: 500;
+      &:hover {
+        color: $function-primary-color--hover;
+      }
+
+      &:first-of-type {
+        margin-right: 16px;
+        padding-right: 16px;
+        border-right: 1px solid $white-color;
+      
+      }
+    }
+  }
+}

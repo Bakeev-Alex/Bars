@@ -1,0 +1,67 @@
+.test__quiz {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  @include transition();
+
+  &:not(.active) {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+  }
+  
+  &--list {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 32px - 200px);
+  }
+
+  &--aside {
+    
+    .aside__block {
+      border-radius: 16px;
+      color: $white-color;
+      background-color: $bg-secondary;
+      width: 200px;
+      padding: 16px;
+      
+      
+    }
+
+    .aside__btn {
+      margin-top: 32px;
+      width: 100%;
+      &:not(.active) {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
+  .quiz__item {
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    @include boxShadow();
+    @include transition();
+    padding: 24px;
+
+    &:not(.active) {
+      opacity: 0;
+      visibility: hidden;
+      
+    }
+
+    &--content {
+      margin-bottom: 16px;
+    }
+
+    &--btn {
+      margin-top: 24px;
+      max-width: 240px;
+      width: 100%;
+    }
+  }
+}

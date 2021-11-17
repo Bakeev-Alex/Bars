@@ -1,0 +1,1011 @@
+$white-color: #ffffff;
+//цвета текста
+$typography-primary-color: #333333;
+$typography-secondary-color: #adadad;
+$typography-text-color: $typography-primary-color;
+$typography-light-white: rgba(255, 255, 255, 0.2);
+
+//функциональный цвета
+$function-primary-color : #fbb962;
+$function-primary-color--hover : lighten($function-primary-color, 5%);
+$function-primary-color--active : darken($function-primary-color, 5%);
+$function-secondary-color : #1c062a;
+$function-link-color : $function-primary-color;
+$function-hover-color: lighten($function-primary-color, 5%);
+$function-success-color : #34cd67;
+$function-warning-color : #ffda79;
+$function-error-color : #eb5757;
+
+//цвета темы
+$theme-primary-color: #fbb962;
+$theme-light-color: #e7a882;
+$theme-secondary-color: #e7a882;
+$theme-gray-color: #fafafa;
+$bg-primary: #f5f5f5;
+$bg-secondary: #1c062a;
+$theme-border-color: #e9e9e9;
+
+//остальные цвета
+$border-color: #e9e9e9;
+$disabled-color: rgba(206, 206, 206, 0.2);
+$hover-shadow-color: #99a2f9;
+$table-border-color: #cdcdcd;
+$slider-button-color: #2e2e2e;
+$overlay-color: rgba(27, 27, 27, 0.6);
+//Формы
+$forms-border-color: rgba(135, 135, 135, 0.4);
+
+// шрифты
+
+/* montserrat-500 - latin_cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/montserrat-v15-latin_cyrillic-500.eot');
+  /* IE9 Compat Modes */
+  src: local('Montserrat Medium'), local('Montserrat-Medium'),
+    url('../fonts/montserrat-v15-latin_cyrillic-500.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('../fonts/montserrat-v15-latin_cyrillic-500.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('../fonts/montserrat-v15-latin_cyrillic-500.woff') format('woff'),
+    /* Modern Browsers */
+    url('../fonts/montserrat-v15-latin_cyrillic-500.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('../fonts/montserrat-v15-latin_cyrillic-500.svg#Montserrat') format('svg');
+  /* Legacy iOS */
+}
+
+/* montserrat-700 - latin_cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/montserrat-v15-latin_cyrillic-700.eot');
+  /* IE9 Compat Modes */
+  src: local('Montserrat Bold'), local('Montserrat-Bold'),
+    url('../fonts/montserrat-v15-latin_cyrillic-700.eot?#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('../fonts/montserrat-v15-latin_cyrillic-700.woff2') format('woff2'),
+    /* Super Modern Browsers */
+    url('../fonts/montserrat-v15-latin_cyrillic-700.woff') format('woff'),
+    /* Modern Browsers */
+    url('../fonts/montserrat-v15-latin_cyrillic-700.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+    url('../fonts/montserrat-v15-latin_cyrillic-700.svg#Montserrat') format('svg');
+  /* Legacy iOS */
+}
+
+// Базовая типографика
+
+$font-size--root: 8px;
+
+$font-size: 16px; // rem(16px)
+$font-size--small: 80%;
+
+$font-path: '../fonts';
+
+$font-family: 'Montserrat',
+-apple-system,
+BlinkMacSystemFont,
+'Segoe UI',
+Roboto,
+'Helvetica Neue',
+Arial,
+'Noto Sans',
+sans-serif,
+'Apple Color Emoji',
+'Segoe UI Emoji',
+'Segoe UI Symbol',
+'Noto Color Emoji';
+$font-family--monospace: SFMono-Regular,
+Menlo,
+Monaco,
+Consolas,
+'Liberation Mono',
+'Courier New',
+monospace;
+$font-family--icon: 'icomoon';
+
+$font-weight--100: 100;
+$font-weight--200: 200;
+$font-weight--300: 300;
+$font-weight--400: 400;
+$font-weight--500: 500;
+$font-weight--600: 600;
+$font-weight--700: 700;
+$font-weight--800: 800;
+$font-weight--900: 900;
+
+$font-weight: $font-weight--400;
+
+$line-height: normal;
+$letter-spacing: normal;
+
+// Ширины
+
+$h1: ('font-size': 56px,
+  'line-height': 1.2,
+  'letter-spacing': 0);
+$h2: ('font-size': 48px,
+  'line-height': 1.375,
+  'letter-spacing': 0.01em);
+
+$h3: ('font-size': 36px,
+  'line-height': 1.2,
+  'letter-spacing': 0);
+$h4: ('font-size': 24px,
+  'line-height': 1.2,
+  'letter-spacing': 0);
+$h5: ('font-size': 20px,
+  'line-height': 1.5,
+  'letter-spacing': 0);
+$h6: ('font-size': 18px,
+  'line-height': 1.5,
+  'letter-spacing': 0);
+
+//грид
+$content-size: 1140px;
+$content-size--min: 280px;
+$padding-size: 20px;
+$col-count: 12;
+$wrapper: ('content-size':$content-size,
+  'content-size--min':$content-size--min,
+  'padding-size': $padding-size,
+  'col-count': $col-count);
+$grid-color: rgba(255, 0, 0, .1);
+
+/**
+ * Преобразование пикселей в rem на основе переменной с базовым размером шрифта.
+ * @param  {number} $px Число пикселей (с единицами измерения или без)
+ * @param  {string} Число пикселей, размер контентного шрифта на проекте
+ * @return {string} Результат преобразования $px в rem
+ */
+
+$font-size--root: 10px !default;
+
+@function rem($px, $font-size: $font-size--root) {
+  @return ((($px / ($px * 0 + 1)) * 100 / ($font-size / 1px)) / 100) * 1rem;
+}
+
+//миксины
+
+/*------------------------------------*\
+  # Transitions
+\*------------------------------------*/
+@mixin transition($properties...) {
+  @if length($properties)>=1 {
+    transition: $properties;
+  }
+
+  @else {
+    transition: all 0.2s ease-in-out 0s;
+  }
+}
+
+@mixin containBg() {
+  -webkit-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@mixin scrollhide() {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin boxShadow() {
+  box-shadow: 0px 10px 10px 14px rgba(51, 51, 51, 0.08);
+}
+
+//cетка
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: map_get($wrapper, content-size--min);
+  max-width: map_get($wrapper, content-size);
+  margin: auto;
+  padding-left: map_get($wrapper, padding-size);
+  padding-right: map_get($wrapper, padding-size);
+
+  &--fluid {
+    max-width: none;
+  }
+}
+
+@mixin row {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  margin-right: - map_get($wrapper, padding-size);
+  margin-left: - map_get($wrapper, padding-size);
+}
+
+@mixin col($size-count: map_get($wrapper, col-count)) {
+  // $size-coutn - число от 1 до 12
+  flex: 0 1 percentage($size-count / map_get($wrapper, col-count));
+  max-width: percentage($size-count / map_get($wrapper, col-count));
+  padding-left: map_get($wrapper, padding-size);
+  padding-right: map_get($wrapper, padding-size);
+}
+
+@mixin offset-col($size-offset: 1) {
+  // $size-offset - число от 1 до 12
+  margin-left: percentage($size-offset / map_get($wrapper, col-count));
+}
+
+//основные стили (base)
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  /* chrome based */
+  width: 0px;
+  /* ширина scrollbar'a */
+  background: transparent;
+  /* опционально */
+}
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: $font-size--root;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $white-color;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing;
+  color: $typography-primary-color;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+select,
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  appearance: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.clearfix {
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &__content {
+    flex: 1 0 auto;
+    position: relative;
+  }
+}
+
+.content-grid {
+  position: relative;
+
+  &::before {
+
+    --grid-color: rgba(255, 0, 0, .1);
+    --grid-sides: 0;
+    --grid-gutter: 32px;
+    --grid-columns: 12;
+    --grid-column-width: calc((100% - var(--grid-gutter) * var(--grid-columns)) / var(--grid-columns));
+    content: '';
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: map_get($wrapper, content-size);
+    margin: auto;
+    pointer-events: none;
+
+    background-image: repeating-linear-gradient(to right, transparent 0, transparent calc(var(--grid-gutter) / 2), var(--grid-color) calc(var(--grid-gutter) / 2), var(--grid-color) calc(var(--grid-column-width) + var(--grid-gutter) / 2), transparent calc(var(--grid-column-width) + var(--grid-gutter) / 2), transparent calc(var(--grid-column-width) + var(--grid-gutter)));
+
+    background-repeat: no-repeat;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &>.content {
+    flex: 1 0 auto;
+    position: relative;
+  }
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-width: map_get($wrapper, content-size--min);
+  max-width: map_get($wrapper, content-size);
+  padding-left: map_get($wrapper, padding-size);
+  padding-right: map_get($wrapper, padding-size);
+  margin: 0 auto;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.fullpage {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  &--filter {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: .5;
+      background-image: linear-gradient(0deg, rgba(67, 52, 59, 0.5), rgba(67, 52, 59, 0.5));
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+.icon {
+  display: inline-block;
+
+  &--arrow-right {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    text-align: center;
+    background-image: url(../img/svg/arrow_right.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
+.pagination-list {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(-50%);
+
+  &__item {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $white-color;
+    margin: 16px 0;
+    position: relative;
+    @include transition();
+
+    &:before,
+    &:after {
+      @include transition();
+    }
+
+    &.active {
+      background-color: $function-primary-color;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        left: 50%;
+        top: 50%;
+        border-radius: 50%;
+        transform: translate(-30%, -30%);
+        border: 1px solid $function-primary-color;
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    &:hover {
+      background-color: $function-primary-color--hover;
+
+      &:after {
+        content: attr(data-title);
+        position: absolute;
+        right: calc(100% + 16px);
+        top: 50%;
+        transform: translateY(-50%);
+        color: $white-color;
+        font-family: $font-family;
+        font-size: rem(18);
+        line-height: 1.22;
+        text-shadow: 2px 4px 10px rgba(32, 32, 32, 0.3);
+        text-align: right;
+
+      }
+    }
+  }
+}
+
+//типографика
+b,
+strong {
+  font-weight: $font-weight--700;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  color: $function-link-color;
+  @include transition();
+
+  &:hover,
+  &:focus {
+
+    color: darken($function-link-color, 5%);
+  }
+
+  &:active {
+    color: darken($function-link-color, 7%);
+  }
+}
+
+//списки
+ol,
+ul,
+dl {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0 0 0 1rem;
+
+  ol,
+  ul,
+  dl {
+    margin: 1rem 0 0;
+  }
+
+  dd,
+  dt,
+  li {
+    margin-bottom: 1rem;
+  }
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+ul {
+  list-style: disc inside;
+}
+
+//заголовки
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  width: 100%;
+  font-weight: $font-weight--700;
+  margin-bottom: 2rem;
+  font-family: $font-family;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: map_get($h1, font-size);
+  line-height: map_get($h1, line-height);
+  letter-spacing: map_get($h1, letter-spacing);
+}
+
+h2 {
+  font-size: map_get($h2, font-size);
+  line-height: map_get($h2, line-height);
+  letter-spacing: map_get($h2, letter-spacing);
+  font-weight: $font-weight--500;
+}
+
+h3 {
+  font-size: map_get($h3, font-size);
+  line-height: map_get($h3, line-height);
+  letter-spacing: map_get($h3, letter-spacing);
+}
+
+h4 {
+  font-size: map_get($h4, font-size);
+  line-height: map_get($h4, line-height);
+  letter-spacing: map_get($h4, letter-spacing);
+}
+
+h5 {
+  font-size: map_get($h5, font-size);
+  line-height: map_get($h5, line-height);
+  letter-spacing: map_get($h5, letter-spacing);
+}
+
+h6 {
+  font-size: map_get($h6, font-size);
+  line-height: map_get($h6, line-height);
+  letter-spacing: map_get($h6, letter-spacing);
+}
+
+//цитаты
+blockquote {
+  border-left: rem(2px) solid $border-color;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1rem 2rem;
+  font-style: normal;
+}
+
+q,
+cite {
+  font-style: italic;
+}
+
+//исходный текст
+code {
+  display: block;
+  width: 100%;
+  margin: 0 0 2rem;
+  padding: 1rem 2rem;
+  font-family: $font-family--monospace;
+  white-space: break-word;
+}
+
+pre {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-left: rem(2px) solid $border-color;
+  font-family: $font-family--monospace;
+
+  &>code {
+    white-space: pre;
+  }
+}
+
+//подчеркивание
+hr {
+  margin: 2rem 0;
+  border: 0;
+  border-bottom: rem(1px) solid $border-color;
+}
+
+//изображения
+picture {
+  display: block;
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+  }
+}
+
+//таблицы
+table {
+  width: 100%;
+  margin-bottom: 2rem;
+  vertical-align: middle;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid $border-color;
+  }
+
+  tbody {
+    vertical-align: inherit;
+  }
+
+  thead th {
+    text-align: left;
+    vertical-align: inherit;
+    border-bottom-color: $border-color;
+  }
+}
+
+
+
+//кнопки
+
+.btn {
+  @include transition();
+  display: inline-block;
+  cursor: pointer;
+  font-family: $font-family;
+  font-size: 14px;
+  white-space: nowrap;
+  line-height: 1.2;
+  font-weight: 400;
+  text-align: center;
+  padding: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+
+  &--primary {
+    color: $white-color;
+    background: $theme-primary-color;
+    border: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      background: $theme-light-color;
+      color: $white-color;
+    }
+  }
+
+  &:disabled {
+    pointer-events: none;
+    background: rgba(148, 148, 148, 0.424);
+    
+  }
+
+
+  &--link {
+    color: $function-primary-color;
+    text-transform: uppercase;
+    padding: 0;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      color: $function-primary-color--hover;
+    }
+
+    &.btn--icon {
+      display: inline-flex;
+      align-items: center;
+
+      .icon {
+        margin-left: 40px;
+        position: relative;
+        @include transition();
+        right: 0;
+      }
+
+      &:hover {
+        .icon {
+
+          right: 10px;
+        }
+      }
+    }
+  }
+
+}
+
+// Формы
+
+.field {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  cursor: pointer;
+  margin-top: 16px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &__input {
+    outline: none;
+    display: block;
+    border: 1px solid $forms-border-color;
+    padding: 11px 30px;
+    border-radius: 10px;
+    background-color: $white-color;
+    font-size: rem(18);
+    font-weight: $font-weight;
+    line-height: 1.22;
+    color: $typography-text-color;
+
+    &:focus {
+      border-color: $function-primary-color--hover;
+    }
+
+    &::placeholder {
+      color: $typography-secondary-color;
+      font-weight: $font-weight;
+      font-family: $font-family;
+      font-size: rem(18);
+      line-height: 1.22;
+    }
+
+    &:required {
+      &+.field__title {
+        &::after {
+          content: '*';
+          color: $function-error-color;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    line-height: 1.57;
+    color: $typography-primary-color;
+    margin-bottom: 4px;
+  }
+
+  &__toggle-password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    top: 26px;
+    right: 1px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:active,
+    &.active {
+      .icon path {
+        fill: $function-primary-color;
+      }
+    }
+
+    .icon {
+      display: flex;
+      width: 24px;
+      height: 24px;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+
+      path {
+        @include transition();
+      }
+    }
+  }
+
+  ul {
+    margin: 4px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: rem(16);
+    line-height: rem(20);
+    color: $function-error-color;
+
+    &+.field__input {
+      border-color: $function-error-color;
+    }
+
+    li {
+      margin: 0;
+    }
+  }
+
+  &__btn {
+    margin-top: 16px;
+    max-width: 220px;
+    width: 100%;
+  }
+
+  &__radio-block {
+    margin-top: 16px;
+    &--title {
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+/*Стили чекбоксов и радиокнопок*/
+.field-check {
+  display: block;
+  position: relative;
+  cursor: pointer;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &__input {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    opacity: 0;
+
+    &[type=checkbox] {
+      &+.field-check__name {
+        &::before {
+          @include transition();
+          content: '';
+          display: block;
+          position: absolute;
+          top: 3px;
+          left: 0;
+          width: 18px;
+          height: 18px;
+          border: 1px solid $typography-secondary-color;
+          border-radius: 4px;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 7px;
+          left: 4px;
+          width: 10px;
+          height: 10px;
+          background-image: url(../images/svg/checkbox-icon.svg);
+          -webkit-background-size: contain;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+
+        &:hover {
+          &::before {
+            border-color: $function-primary-color;
+          }
+        }
+      }
+
+      &:checked+.field-check__name {
+        &::before {
+          border-color: $function-primary-color;
+          background: $function-primary-color;
+        }
+      }
+    }
+
+    &[type=radio] {
+      &+.field-check__name {
+        &::before {
+          @include transition();
+          content: '';
+          display: block;
+          position: absolute;
+          top: 4px;
+          left: 0;
+          width: 16px;
+          height: 16px;
+          border: 2px solid $typography-secondary-color;
+          border-radius: 50%;
+        }
+
+        &::after {
+          @include transition();
+          content: '';
+          position: absolute;
+          top: 8px;
+          left: 4px;
+          width: 8px;
+          height: 8px;
+          background: $function-primary-color;
+          border-radius: 50%;
+          opacity: 0;
+        }
+
+        &:hover {
+          &::before {
+            border-color: $function-primary-color;
+          }
+        }
+      }
+
+      &:checked+.field-check__name {
+        &::before {
+          border-color: $function-primary-color;
+        }
+
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__name {
+    display: block;
+    position: relative;
+    font-size: 2rem;
+    line-height: 1.5;
+    color: $typography-primary-color;
+    padding-left: 30px;
+  }
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.header-block {
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+// Импорты
+
+
+@import 'imports/header';
+@import 'imports/tests-card';
+@import 'imports/auth';
+@import 'imports/pagination';
+@import 'imports/test-detail';
+@import 'imports/test-quiz';
+
+
+

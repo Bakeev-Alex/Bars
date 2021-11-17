@@ -1,0 +1,93 @@
+.tests {
+  &__list {
+
+    &--content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 24px;
+
+    }
+  }
+
+  &__card {
+    border: 1px solid $theme-border-color;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+
+    @include transition();
+
+    &:hover {
+      @include boxShadow();
+      transform: translateY(-2px);
+
+      .desc__link {
+        color: $function-primary-color--hover;
+      }
+
+    }
+
+    &--title {
+      padding: 16px 16px 0;
+    }
+
+    .desc {
+
+      &__text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        padding: 0 16px;
+      }
+
+      &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      &__count {
+        font-size: 12px;
+        display: inline;
+
+        .point {
+          color: $white-color;
+          display: inline
+        }
+
+        .value {
+          display: inline;
+          font-weight: 700;
+          color: $theme-primary-color;
+        }
+      }
+
+      &__bottom {
+        background-color: $bg-secondary;
+        padding: 16px;
+      }
+
+      &__link {
+        text-decoration: none;
+        display: flex;
+        align-items: flex-end;
+        color: $white-color;
+        text-align: baseline;
+
+        .text {
+          margin-right: 8px;
+          line-height: 20px;
+        }
+
+        .material-icons {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+}

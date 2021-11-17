@@ -1,0 +1,87 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="main">
+        <div class="wrapper">
+            <section class="test-detail">
+
+                <div class="header-block">
+                    <h2>{{ result_unique.quiz.title }}</h2>
+                </div>
+
+                <div class="test-detail__content">
+                    <div class="test-detail__content--desc desc">
+                        <h4 class="desc__title">
+                            Описание теста
+                        </h4>
+                        <div class="desc__content">
+                            <p>{{ result_unique.quiz.description }}</p>
+                        </div>
+                        <div class="desc__controls">
+                            <a href="{% if result_unique.quiz.id %}{% url 'user_tests:quiz' result_unique.quiz.id %}{% endif %}" class="btn btn--primary">Пройти тестирование заного</a>
+                        </div>
+                    </div>
+                    <div class="test-detail__content--info info">
+                        <h4 class="info__title">Итоги тестирования</h4>
+
+                        <div class="info__content">
+                            <div class="info__item">
+                        <span class="point">
+                          Общее количество вопросов:
+                        </span>
+                                <span class="value">
+                          {{ result_quiz.quantity }}
+                        </span>
+                            </div>
+
+                            <div class="info__item right">
+                        <span class="point ">
+                          Количество правильных ответов:
+                        </span>
+                                <span class="value">
+                          {{ result_quiz.correct }}
+                        </span>
+                                <span class="material-icons">
+                          check_circle
+                        </span>
+                            </div>
+
+                            <div class="info__item wrong">
+                        <span class="point ">
+                          Количество неправильных ответов:
+                        </span>
+                                <span class="value">
+                          {{ result_quiz.wrong }}
+                        </span>
+                                <span class="material-icons">
+                          cancel
+                        </span>
+                            </div>
+
+                            <div class="info__item">
+                        <span class="point ">
+                          Процент правильных овтетов:
+                        </span>
+                                <span class="value">
+                          {{ result_quiz.percent }}%
+                        </span>
+
+                            </div>
+
+                            <div class="info__item">
+                        <span class="point ">
+                          Итоговая оценка:
+                        </span>
+                                <span class="value">
+                          {{ result_quiz.assessment }}
+                        </span>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}

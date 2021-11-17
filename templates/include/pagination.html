@@ -1,0 +1,41 @@
+
+{% if page_obj.paginator.num_pages > 1 %}
+    <nav class="pagination">
+        <ul class="pagination__list">
+            {% if page_obj.has_previous %}
+                <li class="pagination__item">
+                <a href="?page={{ page_obj.previous_page_number }}" class="pagination__link" title="Предыдущая страница">
+                    <span class="material-icons">arrow_back</span>
+                </a>
+            </li>
+            {% endif %}
+
+            {% for pg in page_obj.paginator.page_range %}
+                {% if page_obj.number == pg %}
+                    <li class="pagination__item active">
+                        <a class="pagination__link">{{ pg }}</a>
+                    </li>
+                {% elif pg > 1 %}
+                    <li class="pagination__item">
+                        <a class="pagination__link" href="{% if url_params %}{{ url_params }}&{% else %}?{% endif %}page={{ pg }}" title="Страница {{ pg }}"{% if classes %} class="page-link {{ classes }}"{% endif %}>{{ pg }}</a>
+                    </li>
+                {% else %}
+                    <li class="pagination__item">
+                        <a class="pagination__link" href="{{ request.path }}{{ url_params }}" title="Первая страница"{% if classes %} class=" page-link {{ classes }}"{% endif %}>{{ pg }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+
+            {% if page_obj.has_next %}
+                <li class="pagination__item">
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination__link" title="Следующая страница">
+                        <span class="material-icons">
+                        arrow_forward
+                        </span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
