@@ -14,11 +14,17 @@ from user_tests.models import UniqueValue, Quiz
 
 
 class AuthenticationViews(LoginView):
+    """
+    Аутентификация пользователя
+    """
     form_class = AuthenticationUserForm
     redirect_authenticated_user = True
 
 
 class ProfessorView(TemplateView):
+    """
+    Представления для регистрации преподавателя
+    """
     template_name = 'accounts/auth_teacher.html'
 
     def __init__(self):
@@ -45,6 +51,9 @@ class ProfessorView(TemplateView):
 
 
 class StudentView(TemplateView):
+    """
+    Представление для регистрации студента
+    """
     template_name = 'accounts/auth_student.html'
 
     def __init__(self):
@@ -71,6 +80,10 @@ class StudentView(TemplateView):
 
 
 class StudentAccountViews(LoginRequiredMixin, TemplateView):
+    """
+    Личный кабинет студента.
+    Выводятся все пройденные тесты данным пользователем
+    """
     template_name = 'accounts/student.html'
 
     def get_context_data(self, **kwargs):
@@ -86,11 +99,18 @@ class StudentAccountViews(LoginRequiredMixin, TemplateView):
 
 
 class TeacherAccountViews(LoginRequiredMixin, TemplateView):
+    """
+    Личный кабинет преподавателя.
+    Есть возможность посмотреть все популярные курсы пройденные студентами за определенный период времени
+    """
     template_name = 'accounts/teacher.html'
 
 
 @login_required
 def popular_quiz(request):
+    """
+    Представление для обработки популярных курсов
+    """
     context = {}
     if request.method == 'POST':
         date_from = request.POST.get('date_from')

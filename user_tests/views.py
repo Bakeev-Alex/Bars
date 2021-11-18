@@ -12,6 +12,10 @@ from .forms import QuizEditForm, QuestionsFormSet, VariantsFormSet
 
 
 class MainViews(LoginRequiredMixin, TemplateView):
+    """
+    Представление главной страницы.
+    Содержит в себе список имеющихся статей с пагинацией
+    """
     template_name = 'user_tests/main.html'
 
     def get_context_data(self, **kwargs):
@@ -25,6 +29,11 @@ class MainViews(LoginRequiredMixin, TemplateView):
 
 
 class QuizViews(LoginRequiredMixin, TemplateView):
+    """
+    Тестирование.
+    Обрабатывает входные данные и записывает ответы в базу
+    с уникальным идентификатором тестирования
+    """
     template_name = 'user_tests/quiz.html'
     queryset_variants = Variant.objects.filter(is_active=True)
 
@@ -78,7 +87,10 @@ class QuizViews(LoginRequiredMixin, TemplateView):
 
 
 class EditQuizViews(LoginRequiredMixin, TemplateView):
-
+    """
+    Редактирование тестов
+    Выводит список готовых тестов с заполненной информаций
+    """
     template_name = 'user_tests/edit_quiz.html'
 
     def __init__(self):
@@ -134,6 +146,9 @@ class EditQuizViews(LoginRequiredMixin, TemplateView):
 
 
 class ResultQuiz(LoginRequiredMixin, TemplateView):
+    """
+    Обработка результатов тестирования
+    """
     template_name = 'user_tests/test_final.html'
 
     def get_context_data(self, **kwargs):
@@ -148,6 +163,11 @@ class ResultQuiz(LoginRequiredMixin, TemplateView):
 
 
 def counting_responses(results) -> dict:
+    """
+    Подсчет ответов, процентного соотношения и оценки
+    :param results: queryset отвеченных вопросов
+    :return result_answer: Словарь с оценочными параметрами
+    """
     user_selection = {}
     for answer in results.result_unique.all():
         question = answer.question_id
