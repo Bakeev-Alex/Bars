@@ -2,40 +2,40 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="content">
-        <main>
-            <div class="wrapper">
+    <div class="container">
+        <div class="content">
+            <main>
+                <div class="wrapper">
 
-                <section class="auth">
-                    <div class="auth__content">
-                        <div class="header-block">
-                            <h3>Авторизация</h3>
+                    <section class="auth">
+                        <div class="auth__content">
+                            <div class="header-block">
+                                <h3>Авторизация</h3>
+                            </div>
+                            <p>или зарегистрироваться как <a href="{% url 'account:professor_auth' %}">Преподователь</a> или <a href="{% url 'account:student_auth' %}">студент</a></p>
+                            <form  class="auth__form" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ next }}">
+
+                                <label class="field">
+                                    {{ form.username }}
+                                    <span class="field__title">
+                                        Логин
+                                    </span>
+                                </label>
+                                <label class="field">
+                                    {{ form.password }}
+                                    <span class="field__title">
+                                        Пароль
+                                    </span>
+                                </label>
+
+                                <button class="btn btn--primary field__btn" type="submit">Войти</button>
+                            </form>
                         </div>
-                        <p>или зарегистрироваться как <a href="{% url 'account:professor_auth' %}">Преподователь</a> или <a href="{% url 'account:student_auth' %}">студент</a></p>
-                        <form  class="auth__form" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ next }}">
-
-                            <label class="field">
-                                {{ form.username }}
-                                <span class="field__title">
-                                    Логин
-                                </span>
-                            </label>
-                            <label class="field">
-                                {{ form.password }}
-                                <span class="field__title">
-                                    Пароль
-                                </span>
-                            </label>
-
-                            <button class="btn btn--primary field__btn" type="submit">Войти</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
-        </main>
+                    </section>
+                </div>
+            </main>
+        </div>
     </div>
-</div>
 {% endblock %}

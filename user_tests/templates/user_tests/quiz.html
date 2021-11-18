@@ -80,7 +80,6 @@
                     <span>{{ questions.count }}</span>
                 </div>
 
-                <!-- ссылка на итоги теста (по итогу вешается класс active) -->
                 <a href="{% if unique_pk %}{% url 'user_tests:result_detail' unique_pk %}
                         {% else %}{% url 'user_tests:result' %}{% endif %}" class="btn btn--primary aside__btn" id="final">
                     Узнать результаты
@@ -98,12 +97,7 @@
         let questionCount = 1;
         let questionCountBlock = document.querySelector('#count');
 
-        // сюда урл куда кидаются запросы (можно из шаблона где-то взять или я хз)
         let url = '/processing/';
-        {#let request = new Request(#}
-        {#        url,#}
-        {#        {'headers': {'X-CSRFToken': csrftoken}}#}
-        {#    );#}
         console.log(questions);
 
         questions.forEach((item, i) => {
@@ -112,7 +106,6 @@
             let form = item.querySelector('form');
             let btn = form.querySelector('.btn');
 
-            // валидирование формы (если ни одного чекбокса не выбрано то кнопка отрубается)
             let checkboxes = form.querySelectorAll('input[type="checkbox"]')
             console.log(checkboxes);
             checkboxes.forEach(checkbox => checkbox.addEventListener('change', (e) => {
@@ -120,7 +113,7 @@
                 console.log(prer);
                 prer.length > 0 ? btn.disabled = false : btn.disabled = true
                 prer.length === checkboxes.length ? btn.disabled = true : btn.disabled = false
-                {#prer.length === checkboxes.length && checkboxes.length !== 1 ? btn.disabled = true : btn.disabled = false#}
+                prer.length === checkboxes.length && checkboxes.length !== 1 ? btn.disabled = true : btn.disabled = false
             }));
 
             form.addEventListener('submit', (e) => {

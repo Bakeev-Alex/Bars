@@ -5,6 +5,7 @@ class AbsDescription(models.Model):
     """
     Модель, текстовые описания объекта
     """
+
     title = models.CharField('Название', max_length=250)
     description = models.TextField('Описание', blank=True, default='')
 
