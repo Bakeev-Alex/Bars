@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import (password_validation)
+from django.contrib.auth import password_validation
 
 from .models import Student, Professor
 
@@ -13,6 +13,9 @@ password2 = forms.CharField(widget=forms.PasswordInput(
 
 
 class AuthenticationUserForm(AuthenticationForm):
+    """
+    Аутентификация пользователей
+    """
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'field__input', 'placeholder': 'Введите ваш логин', 'required': True, 'type': 'text'}))
     password = forms.CharField(
         label="Password",
@@ -22,7 +25,9 @@ class AuthenticationUserForm(AuthenticationForm):
 
 
 class StudentForm(UserCreationForm):
-
+    """
+    Форма регистрации новых студентов
+    """
     password1 = password1
     password2 = password2
 
@@ -43,6 +48,9 @@ class StudentForm(UserCreationForm):
 
 
 class ProfessorForm(UserCreationForm):
+    """
+    Форма регистрации преподавателей
+    """
     password1 = password1
     password2 = password2
 

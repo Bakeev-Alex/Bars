@@ -1,7 +1,6 @@
-from django.utils.timezone import make_aware
-
 from datetime import datetime
 from datetime import date
+from django.utils.timezone import make_aware
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
